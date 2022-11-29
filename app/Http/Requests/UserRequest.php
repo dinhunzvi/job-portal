@@ -11,9 +11,9 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,54 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
+    {
+        return $this->isMethod( 'POST' ) ? $this->store() : $this->update();
+
+    }
+
+    /**
+     * validation rules for storing a user
+     * @return string[]
+     */
+    public function store(): array
     {
         return [
-            //
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'email'         => 'required|email|unique:users,email',
         ];
+
     }
+
+    /**
+     * validation rules for updating a user
+     * @return string[]
+     */
+    public function update(): array
+    {
+        return [
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'email'         => 'required|email|unique:users,email,' . $this->user_id,
+        ];
+
+    }
+
+    /**
+     * validation error messages
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'first_name.required'   => 'Enter your first name',
+            'last_name.required'    => 'Enter your last name',
+            'email.required'        => 'Enter your email address',
+            'email.email'           => 'Your email address is not valid',
+            'email.unique'          => 'Email address already registered'
+        ];
+
+    }
+
 }

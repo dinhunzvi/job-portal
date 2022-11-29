@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class CandidateRequest extends FormRequest
 {
@@ -34,12 +35,14 @@ class CandidateRequest extends FormRequest
     public function store(): array
     {
         return [
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            'email'         => 'required|email|unique:users,email',
-            'id_number'     => 'required|alpha|unique:users,id_number',
-            'dob'           => 'required|date',
-            'gender'        => 'required|in:Female,Male',
+            'first_name'            => 'required',
+            'last_name'             => 'required',
+            'email'                 => 'required|email|unique:users,email',
+            'id_number'             => 'required|alpha|unique:users,id_number',
+            'dob'                   => 'required|date',
+            'gender'                => 'required|in:Female,Male',
+            'password'              => [ 'required', Password::defaults(), 'confirmed' ],
+            'password_confirmation' => [ 'required', Password::default() ]
         ];
 
     }
