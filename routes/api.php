@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CandidateController;
+use App\Http\Controllers\Api\CandidateDocumentController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post( 'auth/register', [ CandidateController::class, 'store' ] );
 
 Route::post( 'auth/candidate/login', [ AuthController::class, 'login' ] );
+
+Route::apiResource( 'candidate-documents', CandidateDocumentController::class );

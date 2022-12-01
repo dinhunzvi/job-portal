@@ -8,6 +8,9 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{ asset( 'css/bootstrap.min.css' ) }}" type="text/css" />
 
+        <!-- FontAwesome CSS -->
+        <link rel="stylesheet" href="{{ asset( 'plugins/fontawesome-free/css/all.css' ) }}" type="text/css" />
+
         @if( $date_picker )
             <!-- datepicker CSS -->
             <link rel="stylesheet" href="{{ asset( 'css/gijgo.min.css') }}" type="text/css"/>
@@ -16,14 +19,17 @@
         <!-- jQuery -->
         <script src="{{ asset( 'js/jquery.min.js' ) }}"></script>
 
+        <!-- custom CSS -->
+        <link rel="stylesheet" href="{{ asset( 'css/common.css' ) }}" type="text/css" />
+
         <title>Job Portal - @yield( 'title' )</title>
     </head>
     <body>
 
-        <div class="container-fluid">
+        <div class="container">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="{{ route( 'dashboard' ) }}">Navbar</a>
+                <a class="navbar-brand" href="{{ route( 'dashboard' ) }}">{{ config( 'app.name' ) }}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -60,6 +66,8 @@
                 </div>
 
             </nav>
+
+            @yield( 'content' )
 
         </div>
 

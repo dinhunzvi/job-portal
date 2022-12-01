@@ -49,11 +49,11 @@ class CandidateDocumentController extends Controller
 
         $request->file( 'document_name' )->storeAs( 'documents/', $filename, 'public' );
 
-        return new CandidateDocumentResource([
+        return new CandidateDocumentResource( CandidateDocument::create([
             'user_id'       => $request->user_id,
             'document_name' => $filename,
             'document_type' => trim( $request->document_type )
-        ]);
+        ]));
 
     }
 
