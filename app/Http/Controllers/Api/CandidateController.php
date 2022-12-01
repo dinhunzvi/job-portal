@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 
 class CandidateController extends Controller
 {
@@ -43,10 +44,10 @@ class CandidateController extends Controller
             'id_number'     => strtoupper( $request->id_number ),
             'dob'           => $request->dob,
             'gender'        => $request->gender,
-
+            'password'      => Hash::make( trim( $request->password ) ),
         ]);
 
-        $token = $candidate->createToken( $request->device_name );
+        $token = $candidate->createToken( 'web interface' );
 
         $token_response = explode( '|', $token->plainTextToken );
 

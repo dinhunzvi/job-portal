@@ -19,7 +19,7 @@ class AuthController extends Controller
      */
     public function login( LoginRequest $request): JsonResponse
     {
-        $user = User::where( 'email', trim( strtolower( $request->email ) ) );
+        $user = User::where( 'email', trim( strtolower( $request->email ) ) )->first() ;
 
         if ( !$user || !Hash::check( trim( $request->password ), $user->password ) ) {
             return response()->json([
@@ -29,7 +29,7 @@ class AuthController extends Controller
             ], 422 );
         }
 
-        $token = $user->createToken( $request->device_name );
+        $token = $user->createToken( 'candidate login' );
 
         $token_response = explode( '|', $token->plainTextToken );
 

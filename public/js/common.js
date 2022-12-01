@@ -1,12 +1,15 @@
     let url_params = new URLSearchParams( window.location.search );
 
-    let user_session = 'calendar_user';
+    let user_session = 'user_id';
+
+    let user_token = 'authentication_token';
 
     function clear_error_messages() {
         $( '.form-group' ).removeClass( 'has-danger' ); // remove the has-danger class from all form groups
         $( '.text-danger' ).remove(); // remove the error message and error message class from all form controls
         $( '#message' ).children().remove(); // clear the error_message div
         $( '#modal_message' ).children().remove(); // clear the modal_error_message div
+        $( '#auth_message' ).children().remove(); // clear the auth_message div
     }
 
     function display_error( display_element, error ) {

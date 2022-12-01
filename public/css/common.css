@@ -1,13 +1,3 @@
-.form-section {
-    background: #ffffff;
-    padding: 5px 20px;
-    margin-bottom: 20px;
-}
-
-#btnSave {
-    margin-top: 10px;
-}
-
 .fa-user-edit, .fa-edit {
     color: #5a909e;
 }
@@ -37,16 +27,39 @@ form textarea.form-control {
     min-height: 164px;
 }
 
-.generic_style {
-    padding: 15px;
-    width: 80%;
-    margin: 0 auto;
-    border: 1px solid #000000;
-    border-radius: 1px;
+/** auth links */
+.auth-links, .auth-links:hover, .auth-links:focus {
+    color: #092be8;
+    text-decoration: none;
+    font-weight: normal;
 }
 
-.chart-title {
+/** auth-box */
+.auth-box {
+    margin: 15px;
+    padding: 15px;
+}
+
+/** auth text **/
+.auth-text {
+    margin-top: 5px;
+    font-weight: lighter;
+}
+
+/** inverse text */
+.inverse-text {
     font-size: 18px;
-    font-weight: normal;
+    color: rgba(168,164,164,0.33);
+}
+
+/** page-title */
+.page-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 30px 0 5px 0;
+}
+
+/** check-row */
+.check-row {
     margin: 10px 0;
 }

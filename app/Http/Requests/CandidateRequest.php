@@ -38,11 +38,11 @@ class CandidateRequest extends FormRequest
             'first_name'            => 'required',
             'last_name'             => 'required',
             'email'                 => 'required|email|unique:users,email',
-            'id_number'             => 'required|alpha|unique:users,id_number',
+            'id_number'             => 'required|alpha_num|unique:users,id_number',
             'dob'                   => 'required|date',
             'gender'                => 'required|in:Female,Male',
             'password'              => [ 'required', Password::defaults(), 'confirmed' ],
-            'password_confirmation' => [ 'required', Password::default() ]
+            'password_confirmation' => [ 'required', Password::default() ],
         ];
 
     }
@@ -57,7 +57,7 @@ class CandidateRequest extends FormRequest
             'first_name'    => 'required',
             'last_name'     => 'required',
             'email'         => 'required|email|unique:users,email,' . $this->user->id,
-            'id_number'     => 'required|alpha|unique:users,id_number,' . $this->user->id,
+            'id_number'     => 'required|alpha_num|unique:users,id_number,' . $this->user->id,
             'dob'           => 'required|date',
             'gender'        => 'required|in:Female,Male',
         ];
@@ -77,7 +77,7 @@ class CandidateRequest extends FormRequest
             'email.email'           => 'Email address is not valid',
             'email.unique'          => 'Email address already registered',
             'id_number.required'    => 'Enter your national ID number',
-            'id_number.alpha'       => 'National ID number should have alpha-numeric characters only',
+            'id_number.alpha_num'   => 'National ID number should have alpha-numeric characters only',
             'id_number.unique'      => 'National ID number already registered',
             'dob.required'          => 'Select your date of birth',
             'dob.date'              => 'Date of birth is not valid',
