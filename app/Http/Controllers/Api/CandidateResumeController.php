@@ -30,26 +30,7 @@ class CandidateResumeController extends Controller
      */
     public function store(CandidateResumeRequest $request): CandidateResumeResource
     {
-        $extension = $request->file( 'document_name' )->getClientOriginalExtension();
 
-        switch ( $extension ) {
-            case ( $extension === 'pdf' || $extension === 'doc' ) :
-
-                $filename = Str::random( 56 ) . ".{$extension}";
-                break;
-
-            case ( $extension === 'docx' ) :
-                $filename = Str::random( 55 ) . ".{$extension}";
-                break;
-
-        }
-
-        $request->file( 'document_name' )->storeAs( 'resumes/', $filename, 'public' );
-
-        return new CandidateResumeResource( CandidateResume::create([
-            'user_id'       => $request->user_id,
-            'document_name' => $filename
-        ]));
 
     }
 

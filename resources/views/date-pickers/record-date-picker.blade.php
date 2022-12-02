@@ -10,8 +10,6 @@
 
     currentDate = yyyy + '-' + mm + '-' + dd;
 
-    console.log( currentDate );
-
     start_date_control.datepicker({
         uiLibrary   : 'bootstrap4',
         format      : 'yyyy-mm-dd',

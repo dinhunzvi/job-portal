@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CandidateRequest;
+use App\Http\Resources\CandidateResumeResource;
 use App\Http\Resources\UserResource;
+use App\Models\CandidateResume;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CandidateController extends Controller
 {
@@ -36,6 +39,22 @@ class CandidateController extends Controller
      */
     public function store(CandidateRequest $request): JsonResponse
     {
+        $extension = $request->file( 'document_name' )->getClientOriginalExtension();
+
+        switch ( $extension ) {
+            case ( $extension === 'pdf' || $extension === 'doc' ) :
+
+                $filename = Str::random( 56 ) . ".{$extension}";
+                break;
+
+            case ( $extension === 'docx' ) :
+                $filename = Str::random( 55 ) . ".{$extension}";
+                break;
+
+        }
+
+        $request->file( 'document_name' )->storeAs( 'resumes/', $filename, 'public' );
+
         $candidate = User::create([
             'first_name'    => ucwords( $request->first_name ),
             'last_name'     => ucwords( $request->last_name ),
@@ -45,6 +64,11 @@ class CandidateController extends Controller
             'dob'           => $request->dob,
             'gender'        => $request->gender,
             'password'      => Hash::make( trim( $request->password ) ),
+        ]);
+
+        CandidateResume::create([
+            'user_id'       => $candidate->id,
+            'document_name' => $filename
         ]);
 
         $token = $candidate->createToken( 'web interface' );

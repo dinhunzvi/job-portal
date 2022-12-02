@@ -16,7 +16,7 @@
 
     @include( 'includes.auth_message' )
 
-    <form method="post" id="register-details">
+    <form method="post" id="register-details" enctype="multipart/form-data">
 
         <div class="row">
 
@@ -92,14 +92,15 @@
                 <div class="form-group" id="gender_grp">
 
                     <label for="">Gender</label>
+
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="rdoFemale" name="gender" value="Female"
-                                />Female
-                        <label class="form-check-label" for="rdoFemale"></label>
+                        <input type="radio" class="form-check-input" id="rdoFemale" name="gender" value="Female" />
+                        <label class="form-check-label" for="rdoFemale">Female</label>
                     </div>
+
                     <div class="form-check">
-                        <input type="radio" class="form-check-input" id="rdoMale" name="gender" value="Male" />Male
-                        <label class="form-check-label" for="rdoMale"></label>
+                        <input type="radio" class="form-check-input" id="rdoMale" name="gender" value="Male" />
+                        <label class="form-check-label" for="rdoMale">Male</label>
                     </div>
 
                 </div>
@@ -128,6 +129,21 @@
                     <label for="password_confirmation">Confirm password</label>
                     <input type="password" id="password_confirmation" name="password_confirmation" class="form-control"
                            placeholder="Confirm password" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-6">
+
+                <div class="form-group" id="resume_grp">
+
+                    <label for="resume">Upload Resume</label>
+                    <input type="file" id="resume" name="resume" class="form-control" />
 
                 </div>
 

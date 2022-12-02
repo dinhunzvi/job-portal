@@ -43,6 +43,7 @@ class CandidateRequest extends FormRequest
             'gender'                => 'required|in:Female,Male',
             'password'              => [ 'required', Password::defaults(), 'confirmed' ],
             'password_confirmation' => [ 'required', Password::default() ],
+            'document_name'         => 'required|mimes:pdf,docx,doc|max:2048'
         ];
 
     }
@@ -71,18 +72,21 @@ class CandidateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'first_name.required'   => 'Enter your first name',
-            'last_name.required'    => 'Enter your last name',
-            'email.required'        => 'Enter your email address',
-            'email.email'           => 'Email address is not valid',
-            'email.unique'          => 'Email address already registered',
-            'id_number.required'    => 'Enter your national ID number',
-            'id_number.alpha_num'   => 'National ID number should have alpha-numeric characters only',
-            'id_number.unique'      => 'National ID number already registered',
-            'dob.required'          => 'Select your date of birth',
-            'dob.date'              => 'Date of birth is not valid',
-            'gender.required'       => 'Select your gender',
-            'gender.in'             => 'Gender must either be Female or Male',
+            'first_name.required'       => 'Enter your first name',
+            'last_name.required'        => 'Enter your last name',
+            'email.required'            => 'Enter your email address',
+            'email.email'               => 'Email address is not valid',
+            'email.unique'              => 'Email address already registered',
+            'id_number.required'        => 'Enter your national ID number',
+            'id_number.alpha_num'       => 'National ID number should have alpha-numeric characters only',
+            'id_number.unique'          => 'National ID number already registered',
+            'dob.required'              => 'Select your date of birth',
+            'dob.date'                  => 'Date of birth is not valid',
+            'gender.required'           => 'Select your gender',
+            'gender.in'                 => 'Gender must either be Female or Male',
+            'document_name.required'    => 'Select your resume',
+            'document_name.mimes'       => 'Resume must be a Pdf or Word document',
+            'document_name.max'         => 'Resume must not be larger than 2Mb'
         ];
 
     }

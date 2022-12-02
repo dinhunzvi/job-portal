@@ -9,22 +9,36 @@ $( document ).ready( function () {
     $( '#register-details' ).on( 'submit', function () {
         clear_error_messages();
 
-        let form_data = {
-            'dob'           : $( '#dob' ).val(),
-            'email'         : $( '#email' ).val(),
-            'first_name'    : $( '#first_name' ).val(),
-            'gender'        : $( 'input[name="gender"]:checked' ).val(),
-            'id_number'     : $( '#id_number' ).val(),
-            'last_name'     : $( '#last_name' ).val(),
-            'password'      : $( '#password' ).val(),
-            'password_confirmation' : $( '#password_confirmation' ).val(),
-        };
+        let form_data = new FormData;
+
+        form_data.append( 'dob', $( '#dob' ).val() );
+
+        form_data.append( 'email', $( '#email' ).val() );
+
+        form_data.append( 'first_name', $( '#first_name' ).val() );
+
+        form_data.append( 'gender', $( 'input[name="gender"]:checked' ).val() );
+
+        form_data.append( 'id_number', $( '#id_number' ).val() );
+
+        form_data.append( 'last_name', $( '#last_name' ).val() );
+
+        form_data.append( 'password', $( '#password' ).val() );
+
+        form_data.append( 'password_confirmation', $( '#password_confirmation' ).val() );
+
+        let file_data = $( '#resume' ).prop( 'files' )[0];
+
+        form_data.append( 'document_name', file_data );
 
         disable_button( button );
 
         $.ajax({
+            cache       : false,
+            contentType : false,
             data        : form_data,
             dataType    : 'json',
+            encType     : 'multipart/form-data',
             error       : function ( response ) {
 
                 if ( response.status === 422 ) {
@@ -35,6 +49,10 @@ $( document ).ready( function () {
 
                     if ( errors.dob ) {
                         display_error( $( '#dob_grp' ), errors.dob[0] );
+                    }
+
+                    if ( errors.document_name ) {
+                        display_error( $( '#resume_grp' ), errors.document_name[0] );
                     }
 
                     if ( errors.email ) {
@@ -68,6 +86,7 @@ $( document ).ready( function () {
                 }
 
             }, method   : 'POST',
+            processData : false,
             success     : function () {
 
                 clear_form();
@@ -96,8 +115,10 @@ $( document ).ready( function () {
     checkBox.on( 'change', function () {
         if ( $( this ).is( ":checked" ) ) {
             enable_button( button );
+            console.log( 'pane zviri kuitika' );
         } else {
             disable_button( button );
+            console.log( 'testing this event' );
         }
     });
 
