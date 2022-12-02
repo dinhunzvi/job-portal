@@ -45,6 +45,6 @@ Route::get( '/documents', function () {
 
 Route::get( '/employment-records', function () {
     return view( 'employment-records', [
-        'date_picker'   => false,
+        'date_picker'   => true,
     ]);
 })->name( 'employment-records' );

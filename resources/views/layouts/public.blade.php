@@ -45,7 +45,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route( 'employment-records') }}">Employment records</a>
+                            <a class="nav-link" href="{{ route( 'employment-records') }}">Work experience</a>
                         </li>
                         <!--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
