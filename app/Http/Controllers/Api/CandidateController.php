@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CandidateRequest;
 use App\Http\Resources\CandidateResumeResource;
 use App\Http\Resources\UserResource;
+use App\Mail\CandidateRegistration;
 use App\Models\CandidateResume;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CandidateController extends Controller
@@ -74,6 +76,11 @@ class CandidateController extends Controller
         $token = $candidate->createToken( 'web interface' );
 
         $token_response = explode( '|', $token->plainTextToken );
+
+        $name = ucwords( implode( ' ', [ $candidate->first_name, $candidate->last_name ] ) );
+
+        Mail::to( 'dougiedj@gmail.com' )->send( new CandidateRegistration( $name, $candidate,
+            base_path() . '/storage/app/public/resumes/' . $filename ) );
 
         return response()->json([
             'token'     => $token_response[1],

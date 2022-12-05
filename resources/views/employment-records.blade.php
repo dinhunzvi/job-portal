@@ -93,6 +93,18 @@
 
     </form>
 
+    <div class="row">
+
+        <div class="col-4">
+
+            <h3 class="experience">Experience</h3>
+
+        </div>
+
+    </div>
+
+    <div id="experience"></div>
+
     @include( 'date-pickers.record-date-picker' )
 
 @endsection
