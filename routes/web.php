@@ -27,24 +27,28 @@ Route::get( '/register', function () {
 
 Route::get( '/terms-and-conditions', function () {
     return view( 'terms-conditions', [
+        'data_tables'   => false,
         'date_picker'   => false,
     ]);
 })->name( 'terms-and-conditions' );
 
 Route::get( '/dashboard', function () {
     return view( 'dashboard', [
+        'data_tables'   => false,
         'date_picker'   => false,
     ]);
 })->name( 'dashboard' );
 
 Route::get( '/documents', function () {
     return view( 'documents', [
+        'data_tables'   => true,
         'date_picker'   => false,
     ]);
 })->name( 'documents' );
 
 Route::get( '/employment-records', function () {
     return view( 'employment-records', [
+        'data_tables'   => false,
         'date_picker'   => true,
     ]);
 })->name( 'employment-records' );

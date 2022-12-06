@@ -75,6 +75,13 @@
         <script src="{{ asset( 'js/common.js') }}" type="text/javascript"></script>
         <script src="js/@yield( 'js_file' )" type="text/javascript"></script>
 
+        @if( $data_tables )
+            <script src="{{ asset( 'plugins/datatables/jquery.dataTables.min.js' ) }}"></script>
+            <script src="{{ asset( 'plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' ) }}"></script>
+            <script src="{{ asset( 'plugins/datatables-responsive/js/dataTables.responsive.min.js' ) }}"></script>
+            <script src="{{ asset( 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' ) }}"></script>
+        @endif
+
     </body>
 </html>
 
