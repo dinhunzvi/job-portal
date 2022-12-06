@@ -26,6 +26,8 @@ Route::post( 'auth/register', [ CandidateController::class, 'store' ] );
 
 Route::post( 'auth/candidate/login', [ AuthController::class, 'login' ] );
 
+Route::get( '/auth/logout/{id}', [ AuthController::class, 'logout' ] );
+
 Route::apiResource( 'candidate-documents', CandidateDocumentController::class );
 
 Route::apiResource( 'employment-records', EmploymentRecordController::class );

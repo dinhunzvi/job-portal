@@ -52,8 +52,18 @@
     });
 
     $( '#btnSignOut' ).click( function () {
-        localStorage.removeItem( user_session );
-        redirect( 'logout' );
+       $.ajax({
+           dataType     : 'json',
+           method       : 'GET',
+           success      : function () {
+
+               localStorage.removeItem( user_session );
+               localStorage.removeItem( user_token );
+               redirect( '/' );
+
+           }, url       : 'api/auth/logout/' + localStorage.getItem( user_session )
+       });
+
     });
 
     $( '#change_password_form' ).submit( function () {

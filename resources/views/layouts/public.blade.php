@@ -47,25 +47,28 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route( 'employment-records') }}">Work experience</a>
                         </li>
-                        <!--<li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                               aria-expanded="false">
+                                Account
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" id="sign_out" href="#">
+                                    <i class="fas fa-sign-out-alt"></i> Sign out
+                                </a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
-                        </li>-->
+
                     </ul>
 
                 </div>
 
             </nav>
+
+            @include( 'modals.sign_out' )
 
             @yield( 'content' )
 
