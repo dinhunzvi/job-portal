@@ -24,7 +24,7 @@ class CandidateDocumentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'document_name' => 'required|mimes:pdf,doc.docx|max:2048',
+            'document_name' => 'required|mimes:pdf,doc,docx|max:2048',
             'document_type' => 'required'
         ];
 

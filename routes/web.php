@@ -36,6 +36,7 @@ Route::get( '/dashboard', function () {
     return view( 'dashboard', [
         'data_tables'   => false,
         'date_picker'   => false,
+        'momemt'        => false
     ]);
 })->name( 'dashboard' );
 
@@ -43,6 +44,7 @@ Route::get( '/documents', function () {
     return view( 'documents', [
         'data_tables'   => true,
         'date_picker'   => false,
+        'moment'        => true
     ]);
 })->name( 'documents' );
 
@@ -50,5 +52,6 @@ Route::get( '/employment-records', function () {
     return view( 'employment-records', [
         'data_tables'   => false,
         'date_picker'   => true,
+        'moment'        => false
     ]);
 })->name( 'employment-records' );

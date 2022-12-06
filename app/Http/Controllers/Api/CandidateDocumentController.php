@@ -7,8 +7,11 @@ use App\Http\Requests\CandidateDocumentRequest;
 use App\Http\Resources\CandidateDocumentResource;
 use App\Models\CandidateDocument;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CandidateDocumentController extends Controller
 {
@@ -91,6 +94,19 @@ class CandidateDocumentController extends Controller
         $candidateDocument->delete();
 
         return response()->noContent();
+
+    }
+
+    /**
+     * get a candidate's documents
+     * @param int $id
+     * @return AnonymousResourceCollection
+     */
+    public function candidate_documents( int $id ): AnonymousResourceCollection
+    {
+        return CandidateDocumentResource::collection( CandidateDocument::where( 'user_id', $id )
+            ->orderBy( 'created_at', 'desc' )
+            ->get() );
 
     }
 

@@ -51,6 +51,35 @@
 
     </form>
 
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <h4 class="documents-title">My documents</h4>
+
+        </div>
+
+    </div>
+
+    <table class="table table-striped table-hover" id="my-documents">
+
+        <thead>
+
+            <tr>
+
+                <th>Document type</th>
+                <th>View</th>
+                <th>Date uploaded</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+    </table>
+
+    @include( 'modals.delete_document' )
+
 @endsection
 
 @section( 'js_file', 'documents.js' )

@@ -82,6 +82,12 @@
             <script src="{{ asset( 'plugins/datatables-responsive/js/responsive.bootstrap4.min.js' ) }}"></script>
         @endif
 
+
+        @if ( $moment )
+            <script src="{{ asset( 'js/moment.js' ) }}" type="text/javascript"></script>
+            <script src="{{ asset( 'js/datetime-moment.js' ) }}" type="text/javascript"></script>
+        @endif
+
     </body>
 </html>
 

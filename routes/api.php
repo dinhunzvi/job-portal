@@ -31,3 +31,7 @@ Route::apiResource( 'candidate-documents', CandidateDocumentController::class );
 Route::apiResource( 'employment-records', EmploymentRecordController::class );
 
 Route::get( 'candidate/employment-records/{id}', [ EmploymentRecordController::class, 'employee_records' ] );
+
+Route::get( 'candidate/documents/{id}', [ CandidateDocumentController::class, 'candidate_documents' ] );
+
+

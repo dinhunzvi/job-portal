@@ -2,6 +2,38 @@ $( function () {
 
     let button = $( '#btnSave' );
 
+    let delete_modal = $( '#delete_document_modal' );
+
+    let document_id = 0;
+
+    get_documents();
+
+    $( document ).on( 'click', '.fa-trash-alt', function () {
+        document_id =  $( this ).prop( "id" );
+
+        delete_modal.modal( 'show' );
+
+    });
+
+    $( '#btnDeleteDocument' ).on( 'click', function () {
+        clear_error_messages();
+        $.ajax({
+            dataType    : 'json',
+            method      : 'DELETE',
+            success     : function () {
+
+                $( '#message' ).append( '<div class="alert alert-success alert-dismissible fade show">' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ' +
+                    'aria-hidden="true">&times;</span></button>Document successfully deleted!!!</div>' );
+                get_documents();
+                document_id = 0;
+                delete_modal.modal( 'hide' );
+
+            }, url      : 'api/candidate-documents/' + document_id
+        });
+
+    });
+
     $( '#document_upload' ).on( 'submit', function () {
         clear_error_messages();
 
@@ -47,6 +79,7 @@ $( function () {
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ' +
                     'aria-hidden="true">&times;</span></button>Document successfully saved!!!</div>' );
                 clear_form();
+                get_documents();
 
             }, url      : 'api/candidate-documents'
         });
@@ -60,6 +93,48 @@ $( function () {
     function clear_form() {
         $( '#document_name' ).val( '' );
         $( '#document_type' ).val( '' );
+    }
+
+    function get_documents() {
+        $.ajax({
+            dataType    : 'json',
+            method      : 'GET',
+            success     : function ( documents ) {
+
+                let table = $( '#my-documents' );
+
+                table.DataTable().clear()
+
+                table.DataTable({
+                    data            : documents,
+                    destroy         : true,
+                    order           : [ [ 2, 'desc' ] ],
+                    columns         : [
+                        { "title"   : "Document type" },
+                        { "title"   : "View" },
+                        { "title"   : "Date uploaded" },
+                        { "title"   : "Actions" },
+                    ], columns      : [
+                        { "data"    : "document_type" },
+                        {
+                            mRender : function ( data, type, row ) {
+                                return '<a href="/storage/documents/' + row.document_name + '" class="document-link">' +
+                                    'View document</a>';
+                            }
+                        },
+                        { "data"    : "date_uploaded" },
+                        {
+                            mRender : function ( data, type, row ) {
+                                return '<a><i class="fas fa-trash-alt" data-toggle="tooltip" title="Delete" id="'
+                                    + row.id + '" data-placement="bottom"></i></a>';
+                            }
+                        }
+                    ]
+                });
+
+            }, url      : 'api/candidate/documents/' + localStorage.getItem( user_session )
+        });
+
     }
 
 });
