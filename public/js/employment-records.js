@@ -138,7 +138,7 @@ $( function () {
             method      : 'GET',
             success     : function ( employment_records ) {
 
-
+                show_records( employment_records );
 
             }, url      : 'api/candidate/employment-records/' + localStorage.getItem( user_session )
         });
@@ -161,6 +161,27 @@ $( function () {
             $( '#position' ).val( record.position );
             $( '#description' ).val( record.description );
         }
+    }
+
+    function show_records( records ) {
+        let records_element = $( '#experience' );
+
+        records_element.children().remove();
+
+        let records_display = '';
+
+        $.each( records, function ( index, record ) {
+            records_display += '<div class="row"><div class="col-6" id="date-values">' + record.start_date + ' to '
+                + record.end_date + '</div><div class="col-6" id="record-icons"><a id="' + record.id + '">'
+                + '<i class="fas fa-trash"></i>' + 'Delete</a><a><i class="fas fa-edit" id="' + record.id + '">'
+                + '</i>Edit</a></div> </div><div class="row"><div class="col-6"><h3 class="record-job">'
+                + record.position + '</h3></div></div><div class="row"><div class="col-md-6"><h3 class="company">'
+                + record.company_name + '</h3></div> </div><div class="row"><div class="col-12"><p>'
+                + record.description + '</p></div></div><div class="row"><div class="col-12"><hr class="boundary-line" /></div></div>';
+        });
+
+        records_element.append( records_display );
+
     }
 
 });

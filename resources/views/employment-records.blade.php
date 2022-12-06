@@ -97,7 +97,7 @@
 
         <div class="col-4">
 
-            <h3 class="experience">Experience</h3>
+            <h3 class="experience-title">Experience</h3>
 
         </div>
 

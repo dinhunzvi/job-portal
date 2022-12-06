@@ -88,7 +88,9 @@ class EmploymentRecordController extends Controller
      */
     public function employee_records( int $user_id ): AnonymousResourceCollection
     {
-        return EmploymentRecordResource::collection( EmploymentRecord::where( 'user_id', $user_id )->get() );
+        return EmploymentRecordResource::collection( EmploymentRecord::where( 'user_id', $user_id )
+            ->orderBy( 'start_date', 'desc' )
+            ->get() );
 
     }
 

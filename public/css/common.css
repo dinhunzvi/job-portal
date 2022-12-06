@@ -63,3 +63,31 @@ form textarea.form-control {
 .check-row {
     margin: 10px 0;
 }
+
+/**
+    experience area
+ */
+
+.experience-title {
+    margin: 20px 0 10px 0;
+}
+
+/** dotted line */
+.boundary-line {
+    border-top: dotted 3px;
+}
+
+#date-values {
+    font-style: italic;
+    font-size: 14px;
+}
+
+.company {
+    font-size: 14px;
+    font-style: italic;
+}
+
+.record-job {
+    font-size: 18px;
+    font-weight: bold;
+}
