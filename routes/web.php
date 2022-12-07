@@ -36,7 +36,7 @@ Route::get( '/dashboard', function () {
     return view( 'dashboard', [
         'data_tables'   => false,
         'date_picker'   => false,
-        'momemt'        => false
+        'moment'        => false
     ]);
 })->name( 'dashboard' );
 

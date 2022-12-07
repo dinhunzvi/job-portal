@@ -9,6 +9,7 @@ use App\Models\CandidateDocument;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -91,6 +92,11 @@ class CandidateDocumentController extends Controller
      */
     public function destroy(CandidateDocument $candidateDocument): Response
     {
+        $filePath = base_path() . '/storage/app/public/documents/' . $candidateDocument->document_name;
+        if ( file_exists( $filePath ) ) {
+            unlink( $filePath );
+        }
+
         $candidateDocument->delete();
 
         return response()->noContent();
