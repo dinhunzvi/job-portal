@@ -66,7 +66,7 @@
 
     });
 
-    $( '#change_password_form' ).submit( function () {
+    $( '#password-details' ).on( 'submit', function () {
         clear_error_messages();
 
         let button = $( '#btnChangePassword' );
@@ -78,16 +78,44 @@
         $.ajax({
             data        : form_data,
             dataType    : 'json',
-            error       : function ( data ) {
+            error       : function ( response ) {
+
+                if ( response.status === 422 ) {
+
+                    $( 'input[type=password]' ).val( '' );
+                    let errors = response.responseJSON.errors;
+
+                    if ( errors.current ) {
+                        display_error( $( '#current_grp' ), errors.current[0] );
+                    }
+
+                    if ( errors.password ) {
+                        display_error( $( '#password_grp' ), errors.password[0] );
+                    }
+
+                    if ( errors.password_confirmation ) {
+                        display_error( $( '#password_confirmation_grp' ), errors.password_confirmation[0] );
+                    }
+
+                }
 
             }, method   : 'PUT',
             success     : function () {
 
-            }, url      : 'api/auth/change_password'
+                $( 'input[type=password]' ).val( '' );
+                $( '#auth_message' ).append( '<div class="alert alert-success alert-dismissible fade show">' +
+                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ' +
+                    'aria-hidden="true">&times;</span></button>You have successfully changed your password!</div>' );
+                setInterval( function () {
+                    $( '#change_password_modal' ).modal( 'hide' );
+                    clear_error_messages();
+                }, 2500 );
+
+            }, url      : 'api/auth/change-password/' + localStorage.getItem( user_session )
         });
 
         enable_button( button );
 
         return false;
 
-    })
+    });

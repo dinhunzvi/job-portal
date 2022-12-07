@@ -43,6 +43,7 @@ class ChangePasswordRequest extends FormRequest
             'password.required'             => 'Enter your new password',
             'password.Password::default()'  => 'New password is not strong enough. Include digits and special characters',
             'password.confirmed'            => 'Confirm your new password',
+            'password_confirmation.required'=> 'Confirm your new password',
         ];
 
     }

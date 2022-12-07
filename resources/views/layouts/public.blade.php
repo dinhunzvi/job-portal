@@ -54,12 +54,15 @@
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" id="change_password" href="#">
+                                    <i class="fas fa-pencil-alt"></i> Change password
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" id="sign_out" href="#">
                                     <i class="fas fa-sign-out-alt"></i> Sign out
                                 </a>
                             </div>
+
                         </li>
 
                     </ul>
@@ -69,6 +72,8 @@
             </nav>
 
             @include( 'modals.sign_out' )
+
+            @include( 'modals.change-password' )
 
             @yield( 'content' )
 

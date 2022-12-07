@@ -36,7 +36,7 @@
 
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-danger" id="btnDeleteDocument">
-                    <i class="fas fa-times"></i> Delete document
+                    <i class="fas fa-pencil"></i> Change password
                 </button>
 
             </div>

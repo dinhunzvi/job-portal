@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -55,6 +56,34 @@ class AuthController extends Controller
 
         return response()->noContent();
 
+    }
+
+    /**
+     * @param ChangePasswordRequest $request
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function change_password( ChangePasswordRequest $request, int $id ): JsonResponse
+    {
+        $current = trim( $request->current );
+        $password = trim( $request->password );
+
+        $user = User::find( $id );
+
+        if ( !Hash::check( $current, $user->getAuthPassword() ) ) {
+            return response()->json([
+                'errors'    => [
+                    'current'   => 'Current password is incorrect'
+                ]
+            ], 422 );
+        }
+
+        $user->password = Hash::make( $password );
+        $user->save();
+
+        return response()->json([
+            'message'   => 'Password successfully changed'
+        ], 200 );
     }
 
 }
