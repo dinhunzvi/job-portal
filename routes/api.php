@@ -30,6 +30,8 @@ Route::get( '/auth/logout/{id}', [ AuthController::class, 'logout' ] );
 
 Route::put( '/auth/change-password/{id}', [ AuthController::class, 'change_password' ] );
 
+Route::apiResource( 'candidates', CandidateController::class );
+
 Route::apiResource( 'candidate-documents', CandidateDocumentController::class );
 
 Route::apiResource( 'employment-records', EmploymentRecordController::class );

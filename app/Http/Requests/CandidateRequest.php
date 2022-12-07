@@ -57,8 +57,8 @@ class CandidateRequest extends FormRequest
         return [
             'first_name'    => 'required',
             'last_name'     => 'required',
-            'email'         => 'required|email|unique:users,email,' . $this->user->id,
-            'id_number'     => 'required|alpha_num|unique:users,id_number,' . $this->user->id,
+            'email'         => 'required|email|unique:users,email,' . $this->candidate,
+            'id_number'     => 'required|alpha_num|unique:users,id_number,' . $this->candidate,
             'dob'           => 'required|date',
             'gender'        => 'required|in:Female,Male',
         ];

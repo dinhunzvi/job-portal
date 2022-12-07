@@ -35,7 +35,7 @@ Route::get( '/terms-and-conditions', function () {
 Route::get( '/dashboard', function () {
     return view( 'dashboard', [
         'data_tables'   => false,
-        'date_picker'   => false,
+        'date_picker'   => true,
         'moment'        => false
     ]);
 })->name( 'dashboard' );
