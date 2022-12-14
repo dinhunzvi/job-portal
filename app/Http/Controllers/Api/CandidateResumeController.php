@@ -31,6 +31,35 @@ class CandidateResumeController extends Controller
     public function store(CandidateResumeRequest $request): CandidateResumeResource
     {
 
+        $extension = $request->file( 'document_name' )->getClientOriginalExtension();
+
+        switch ( $extension ) {
+            case ( $extension === 'pdf' || $extension === 'doc' ) :
+
+                $filename = Str::random( 56 ) . ".{$extension}";
+                break;
+
+            case ( $extension === 'docx' ) :
+                $filename = Str::random( 55 ) . ".{$extension}";
+                break;
+
+        }
+
+        $request->file( 'document_name' )->storeAs( 'resumes/', $filename, 'public' );
+
+        $candidate_resume = CandidateResume::where( 'user_id', $request->user_id )
+            ->first();
+
+        $resume_path = base_path() . '/storage/app/public/resumes/' . $candidate_resume->document_name;
+        if ( file_exists( $resume_path ) ) {
+            unlink( $resume_path );
+
+        }
+
+        return new CandidateResumeResource( CandidateResume::create([
+            'document_name' => $filename,
+            'user_id'       => $request->user_id
+        ]));
 
     }
 
@@ -50,30 +79,11 @@ class CandidateResumeController extends Controller
      *
      * @param CandidateResumeRequest $request
      * @param CandidateResume $candidateResume
-     * @return CandidateResumeResource
+     * @return void
      */
-    public function update(CandidateResumeRequest $request, CandidateResume $candidateResume): CandidateResumeResource
+    public function update(CandidateResumeRequest $request, CandidateResume $candidateResume)
     {
-        $extension = $request->file( 'document_name' )->getClientOriginalExtension();
 
-        switch ( $extension ) {
-            case ( $extension === 'pdf' || $extension === 'doc' ) :
-
-                $filename = Str::random( 56 ) . ".{$extension}";
-                break;
-
-            case ( $extension === 'docx' ) :
-                $filename = Str::random( 55 ) . ".{$extension}";
-                break;
-
-        }
-
-        $request->file( 'document_name' )->storeAs( 'resumes/', $filename, 'public' );
-
-        return new CandidateResumeResource( CandidateResume::update([
-            'user_id'       => $request->user_id,
-            'document_name' => $filename
-        ]));
 
     }
 

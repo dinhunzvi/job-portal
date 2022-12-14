@@ -53,7 +53,9 @@
                                 Account
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="{{ route( 'resume') }}">
+                                    <i class="fas fa-upload"></i> Resume
+                                </a>
                                 <a class="dropdown-item" id="change_password" href="#">
                                     <i class="fas fa-pencil-alt"></i> Change password
                                 </a>

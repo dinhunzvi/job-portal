@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CandidateController;
 use App\Http\Controllers\Api\CandidateDocumentController;
+use App\Http\Controllers\Api\CandidateResumeController;
 use App\Http\Controllers\Api\EmploymentRecordController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ Route::put( '/auth/change-password/{id}', [ AuthController::class, 'change_passw
 Route::apiResource( 'candidates', CandidateController::class );
 
 Route::apiResource( 'candidate-documents', CandidateDocumentController::class );
+
+Route::apiResource( 'candidate-resumes', CandidateResumeController::class );
 
 Route::apiResource( 'employment-records', EmploymentRecordController::class );
 

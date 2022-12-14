@@ -55,3 +55,12 @@ Route::get( '/employment-records', function () {
         'moment'        => false
     ]);
 })->name( 'employment-records' );
+
+Route::get( '/resume', function () {
+    return view( 'resume', [
+        'data_tables'   => false,
+        'date_picker'   => false,
+        'moment'        => false
+    ]);
+})->name( 'resume' );
+
