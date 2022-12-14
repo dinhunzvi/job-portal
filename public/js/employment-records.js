@@ -172,9 +172,9 @@ $( function () {
 
         $.each( records, function ( index, record ) {
             records_display += '<div class="row"><div class="col-6" id="date-values">' + record.start_date + ' to '
-                + record.end_date + '</div><div class="col-6" id="record-icons"><a id="' + record.id + '">'
-                + '<i class="fas fa-trash"></i>' + 'Delete</a><a><i class="fas fa-edit" id="' + record.id + '">'
-                + '</i>Edit</a></div> </div><div class="row"><div class="col-6"><h3 class="record-job">'
+                + record.end_date + '</div><div class="col-6"><div class=" record-icons"><a class="record-delete" id="'
+                + record.id + '"><i class="fas fa-trash"></i>' + 'Delete</a><a><i class="fas fa-edit" id="' + record.id + '">'
+                + '</i>Edit</a></div> </div></div> <div class="row"><div class="col-6"><h3 class="record-job">'
                 + record.position + '</h3></div></div><div class="row"><div class="col-md-6"><h3 class="company">'
                 + record.company_name + '</h3></div> </div><div class="row"><div class="col-12"><p>'
                 + record.description + '</p></div></div><div class="row"><div class="col-12"><hr class="boundary-line" /></div></div>';

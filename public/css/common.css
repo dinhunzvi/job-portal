@@ -93,6 +93,18 @@ form textarea.form-control {
     font-weight: bold;
 }
 
+.record-icons {
+    float: right;
+    overflow: auto;
+}
+
+.record-icons .fas {
+    margin: 5px;
+    font-size: small;
+    color: rgba(128,125,125,0.33);
+    cursor: pointer;
+}
+
 /**
 documents
  */
