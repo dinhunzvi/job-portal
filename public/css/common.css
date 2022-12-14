@@ -101,8 +101,14 @@ form textarea.form-control {
 .record-icons .fas {
     margin: 5px;
     font-size: small;
-    color: rgba(128,125,125,0.33);
+    color: rgba(40, 40, 40, 0.33);
     cursor: pointer;
+}
+
+.record-icons .record-delete, .record-icons .record-edit, .record-icons .record-delete:hover,
+.record-icons .record-edit:hover {
+    color: rgba(40,40,40,0.33);
+    text-decoration: none;
 }
 
 /**

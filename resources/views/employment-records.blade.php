@@ -107,6 +107,8 @@
 
     @include( 'date-pickers.record-date-picker' )
 
+    @include( 'modals.delete_employment_record' )
+
 @endsection
 
 @section( 'js_file', 'employment-records.js' )

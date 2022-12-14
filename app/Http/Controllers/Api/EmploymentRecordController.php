@@ -45,11 +45,18 @@ class EmploymentRecordController extends Controller
      * Display the specified resource.
      *
      * @param EmploymentRecord $employmentRecord
-     * @return Response
+     * @return EmploymentRecordResource
      */
-    public function show(EmploymentRecord $employmentRecord)
+    public function show(int $id)
     {
-        //
+        $employment_record = EmploymentRecord::find( $id );
+
+        if ( !$employment_record ) {
+            abort( 404, 'Work experience not found' );
+        }
+
+        return new EmploymentRecordResource( $employment_record );
+
     }
 
     /**

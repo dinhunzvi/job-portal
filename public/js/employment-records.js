@@ -2,11 +2,37 @@ $( function () {
 
     let button = $( '#btnSave' );
 
-    let record_form = $( '#employment-details' );
-
     let current_record = {};
 
+    let delete_modal = $( '#delete_employment_record_modal' );
+
+    let employment_record_id = 0;
+
+    let record_form = $( '#employment-details' );
+
     get_records();
+
+    $( document ).on( 'click', '.record-delete', function () {
+        employment_record_id = $( this ).prop( "id" );
+
+        delete_modal.modal( 'show' );
+
+    });
+
+    $( document ).on( 'click', '.record-edit', function () {
+        $.ajax({
+            dataType    : 'json',
+            method      : 'GET',
+            success     : function ( employment_record ) {
+
+                current_record = employment_record;
+
+                show_record( current_record );
+
+            }, url      : 'api/employment-records/' + $( this ).attr( "id" )
+        });
+
+    });
 
     record_form.on( 'submit', function () {
        clear_error_messages();
@@ -22,6 +48,25 @@ $( function () {
        enable_button( button );
 
        return false;
+
+    });
+
+    $( '#btnDeleteRecord' ).on( 'click', function () {
+        clear_error_messages();
+       $.ajax({
+           dataType     : 'json',
+           method       : 'DELETE',
+           success      : function () {
+
+               $( '#message' ).append( '<div class="alert alert-success alert-dismissible fade show">' +
+                   '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ' +
+                   'aria-hidden="true">&times;</span></button>Work experience successfully deleted!</div>' );
+               get_records();
+               employment_record_id = 0;
+               delete_modal.modal( 'hide' );
+
+           }, url       : 'api/employment-records/' + employment_record_id
+       });
 
     });
 
@@ -125,7 +170,7 @@ $( function () {
                 show_record( current_record );
                 $( '#message' ).append( '<div class="alert alert-success alert-dismissible fade show">' +
                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span ' +
-                    'aria-hidden="true">&times;</span></button>Work experience successfully saved!!!</div>' );
+                    'aria-hidden="true">&times;</span></button>Work experience successfully updated!!!</div>' );
 
             }, url      : 'api/employment-records/' + $( '#employment_record_id' ).val()
         });
@@ -173,11 +218,12 @@ $( function () {
         $.each( records, function ( index, record ) {
             records_display += '<div class="row"><div class="col-6" id="date-values">' + record.start_date + ' to '
                 + record.end_date + '</div><div class="col-6"><div class=" record-icons"><a class="record-delete" id="'
-                + record.id + '"><i class="fas fa-trash"></i>' + 'Delete</a><a><i class="fas fa-edit" id="' + record.id + '">'
-                + '</i>Edit</a></div> </div></div> <div class="row"><div class="col-6"><h3 class="record-job">'
-                + record.position + '</h3></div></div><div class="row"><div class="col-md-6"><h3 class="company">'
-                + record.company_name + '</h3></div> </div><div class="row"><div class="col-12"><p>'
-                + record.description + '</p></div></div><div class="row"><div class="col-12"><hr class="boundary-line" /></div></div>';
+                + record.id + '" href="#"><i class="fas fa-trash"></i>' + 'Delete</a><a href="#" class="record-edit" '
+                + 'id="'  + record.id + '"><i class="fas fa-edit" "></i>Edit</a></div> </div></div> <div class="row">'
+                + '<div class="col-6"><h3 class="record-job">' + record.position + '</h3></div></div><div class="row">'
+                + '<div class="col-md-6"><h3 class="company">' + record.company_name + '</h3></div> </div><div '
+                + 'class="row"><div class="col-12"><p>' + record.description + '</p></div></div><div class="row"><div '
+                + 'class="col-12"><hr class="boundary-line" /></div></div>';
         });
 
         records_element.append( records_display );
