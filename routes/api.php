@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CandidateController;
 use App\Http\Controllers\Api\CandidateDocumentController;
 use App\Http\Controllers\Api\CandidateResumeController;
 use App\Http\Controllers\Api\EmploymentRecordController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,8 +40,12 @@ Route::apiResource( 'candidate-resumes', CandidateResumeController::class );
 
 Route::apiResource( 'employment-records', EmploymentRecordController::class );
 
+Route::apiResource( 'users', UserController::class );
+
 Route::get( 'candidate/employment-records/{id}', [ EmploymentRecordController::class, 'employee_records' ] );
 
 Route::get( 'candidate/documents/{id}', [ CandidateDocumentController::class, 'candidate_documents' ] );
+
+Route::get( 'candidate/resume/{id}', [ CandidateResumeController::class, 'candidate_resume' ] );
 
 

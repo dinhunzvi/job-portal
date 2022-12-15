@@ -28,4 +28,5 @@ class EmploymentRecordResource extends JsonResource
         ];
 
     }
+
 }

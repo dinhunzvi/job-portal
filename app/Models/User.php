@@ -28,6 +28,8 @@ class User extends Authenticatable
         'id_number'
     ];
 
-    protected $guarded = [];
+    protected $dates = [
+        'dob'
+    ];
 
 }

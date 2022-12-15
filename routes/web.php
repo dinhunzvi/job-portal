@@ -64,3 +64,35 @@ Route::get( '/resume', function () {
     ]);
 })->name( 'resume' );
 
+/** admin routes */
+
+/** dashboard */
+Route::get( '/admin/', function () {
+    return view( 'admin.dashboard', [
+        'charts'        => true,
+        'data_tables'   => false,
+        'date_picker'   => false,
+        'moment'        => false
+    ]);
+})->name( 'admin-home' );
+
+/** users */
+Route::get( '/admin/users', function () {
+    return view( 'candidates.users', [
+        'charts'        => false,
+        'data_tables'   => true,
+        'date_picker'   => false,
+        'moment'        => false
+    ]);
+})->name( 'users' );
+
+/** users */
+Route::get( '/admin/candidates', function () {
+    return view( 'admin.candidates', [
+        'charts'        => true,
+        'data_tables'   => true,
+        'date_picker'   => false,
+        'moment'        => true,
+        'js_file'       => 'candidates.js'
+    ]);
+})->name( 'candidates' );

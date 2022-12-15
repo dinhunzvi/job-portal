@@ -19,7 +19,7 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item has-treeview">
-                <a href="{{ route( 'home' ) }}" class="nav-link">
+                <a href="{{ route( 'admin-home' ) }}" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
                     <i class="right"></i>
@@ -39,30 +39,16 @@
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="{{ route( 'transporters' ) }}" class="nav-link">
+                        <a href="{{ route( 'candidates' ) }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Transporters</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route( 'drivers') }}" class="nav-link">
+                        <a href="{{ route( 'users') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Drivers</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route( 'fuel_depots') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Fuel depots</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route( 'vehicles') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Vehicles</p>
                         </a>
                     </li>
 
@@ -83,7 +69,7 @@
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="{{ route( 'fuel_requests' ) }}" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Fuel requests</p>
                         </a>
@@ -106,7 +92,7 @@
                 <ul class="nav nav-treeview">
 
                     <li class="nav-item">
-                        <a href="{{ route( 'users' ) }}" class="nav-link">
+                        <a href="" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>
                         </a>

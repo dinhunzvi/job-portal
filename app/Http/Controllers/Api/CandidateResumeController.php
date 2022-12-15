@@ -56,6 +56,8 @@ class CandidateResumeController extends Controller
 
         }
 
+        $candidate_resume->delete();
+
         return new CandidateResumeResource( CandidateResume::create([
             'document_name' => $filename,
             'user_id'       => $request->user_id
@@ -98,6 +100,20 @@ class CandidateResumeController extends Controller
         $candidateResume->delete();
 
         return response()->noContent();
+
+    }
+
+    /**
+     * get a candidate's resume
+     * @param int $id
+     * @return CandidateResumeResource
+     */
+    public function candidate_resume( int $id ): CandidateResumeResource
+    {
+        $candidate_resume = CandidateResume::where( 'user_id', $id )
+            ->first();
+
+        return new CandidateResumeResource( $candidate_resume );
 
     }
 
