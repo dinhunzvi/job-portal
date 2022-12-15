@@ -78,11 +78,12 @@ Route::get( '/admin/', function () {
 
 /** users */
 Route::get( '/admin/users', function () {
-    return view( 'candidates.users', [
+    return view( 'admin.users', [
         'charts'        => false,
         'data_tables'   => true,
         'date_picker'   => false,
-        'moment'        => false
+        'moment'        => false,
+        'js_file'       => 'users.js'
     ]);
 })->name( 'users' );
 
